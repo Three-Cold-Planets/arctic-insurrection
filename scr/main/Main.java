@@ -71,7 +71,6 @@ public class Main extends Mod{
 
         Events.run(WinEvent.class, this::loadSplash);
 
-
         //Most of theese are singletons for the sake of being able to port these over to the Arctic-Insurrection mod more easly.
         SaveVersion.addCustomChunk("upgrade-handler", UpgradeHandler.get());
         Events.run(EventType.ClientLoadEvent.class, () -> {

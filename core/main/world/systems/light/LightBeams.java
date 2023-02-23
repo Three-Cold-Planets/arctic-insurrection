@@ -7,15 +7,17 @@ import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
-import arc.math.geom.*;
+import arc.math.geom.Position;
+import arc.math.geom.Rect;
+import arc.math.geom.Shape2D;
+import arc.math.geom.Vec2;
 import arc.struct.ObjectMap;
 import arc.struct.Seq;
 import arc.util.Tmp;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import main.content.Palf;
-import main.graphics.FrostShaders;
-import main.math.Mathh;
+import main.graphics.ModPal;
+import main.math.MathUtils;
 import mindustry.Vars;
 import mindustry.graphics.Layer;
 import mindustry.io.SaveFileReader;
@@ -52,7 +54,7 @@ public class LightBeams implements SaveFileReader.CustomChunk {
     public static Rect r1 = new Rect(), r2 = new Rect();
 
     public static Color[] colors = new Color[]{
-            Palf.lightRed, Palf.lightGreen, Palf.lightBlue, Palf.darkRed, Palf.darkGreen, Palf.darkBlue
+            ModPal.lightRed, ModPal.lightGreen, ModPal.lightBlue, ModPal.darkRed, ModPal.darkGreen, ModPal.darkBlue
     };
 
     //Most of this data is used for world interactions, if I were to implement light unable to interact with the world, this would look different
@@ -360,7 +362,7 @@ public class LightBeams implements SaveFileReader.CustomChunk {
                 r2.set(x3, y3, x4 - x3, y4 - y3).normalize();
 
                 if(!r1.overlaps(r2)) continue;
-                Vec2 point = Mathh.intersection(x1, y1, x2, y2, x3, y3, x4, y4);
+                Vec2 point = MathUtils.intersection(x1, y1, x2, y2, x3, y3, x4, y4);
 
                 //If the point found is null, or the point is further away from a previously found point, continue.
                 if(point == null || (found && point.dst2(x1, y1) > pointOut.dst2(x1, y1))) continue;
@@ -379,12 +381,13 @@ public class LightBeams implements SaveFileReader.CustomChunk {
         this.draw(false);
     }
 
+    //Commented out all the bits which use shaders and such, this entire class is being redone anyways
     public void draw(boolean debug){
         Draw.mixcol();
         Draw.blend();
-        FrostShaders.effectBuffer.resize(Core.graphics.getWidth(), Core.graphics.getHeight());
+        //FrostShaders.effectBuffer.resize(Core.graphics.getWidth(), Core.graphics.getHeight());
         Draw.draw(Layer.light + 5, () -> {
-            FrostShaders.effectBuffer.begin(Color.clear);
+            //FrostShaders.effectBuffer.begin(Color.clear);
             lights.each(l -> {
                 out.clear();
                 l.getSources(out);
@@ -435,8 +438,8 @@ public class LightBeams implements SaveFileReader.CustomChunk {
             Draw.reset();
             Draw.alpha(1);
             Draw.blend(Blending.additive);
-            FrostShaders.effectBuffer.end();
-            Draw.blit(FrostShaders.effectBuffer, FrostShaders.light);
+            //FrostShaders.effectBuffer.end();
+            //Draw.blit(FrostShaders.effectBuffer, FrostShaders.light);
             Draw.blend();
         });
     }

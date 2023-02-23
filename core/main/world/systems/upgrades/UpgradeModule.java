@@ -3,7 +3,6 @@ package main.world.systems.upgrades;
 import arc.struct.Seq;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import main.type.upgrade.Upgrade;
 import main.type.upgrade.Upgradeable;
 import mindustry.world.modules.BlockModule;
 

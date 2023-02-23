@@ -1,15 +1,13 @@
 package main.world.systems.upgrades;
 
-import arc.Events;
-import arc.struct.*;
+import arc.struct.Seq;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import main.type.upgrade.Upgrade;
-import mindustry.game.EventType;
 import mindustry.io.SaveFileReader.CustomChunk;
-import mindustry.io.SaveVersion;
 
-import java.io.*;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 
 public class UpgradeHandler implements CustomChunk{
 

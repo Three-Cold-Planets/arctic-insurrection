@@ -1,7 +1,6 @@
 package main.world.systems.upgrades;
 
 import arc.util.Log;
-import main.type.upgrade.Upgrade;
 import mindustry.type.ItemStack;
 
 //Used to store information about a type's upgrades

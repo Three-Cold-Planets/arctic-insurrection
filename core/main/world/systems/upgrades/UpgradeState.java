@@ -3,7 +3,6 @@ package main.world.systems.upgrades;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
 import main.io.ItemIO;
-import main.type.upgrade.Upgrade;
 import mindustry.type.ItemStack;
 
 import java.util.Arrays;
